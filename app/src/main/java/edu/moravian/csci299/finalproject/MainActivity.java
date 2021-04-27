@@ -5,10 +5,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
 import android.widget.FrameLayout;
 
 import com.google.android.material.tabs.TabLayout;
@@ -26,18 +23,18 @@ public class MainActivity extends AppCompatActivity {
         tabLayout = (TabLayout) findViewById(R.id.simpleTabLayout);
 // Create a new Tab named "First"
         TabLayout.Tab firstTab = tabLayout.newTab();
-        firstTab.setText("First"); // set the Text for the first Tab
+        firstTab.setText(R.string.tab_1); // set the Text for the first Tab
         firstTab.setIcon(R.drawable.ic_launcher_foreground); // set an icon for the
 // first tab
         tabLayout.addTab(firstTab); // add  the tab at in the TabLayout
 // Create a new Tab named "Second"
         TabLayout.Tab secondTab = tabLayout.newTab();
-        secondTab.setText("Second"); // set the Text for the second Tab
+        secondTab.setText(R.string.tab_2); // set the Text for the second Tab
         secondTab.setIcon(R.drawable.ic_launcher_foreground); // set an icon for the second tab
         tabLayout.addTab(secondTab); // add  the tab  in the TabLayout
 // Create a new Tab named "Third"
         TabLayout.Tab thirdTab = tabLayout.newTab();
-        thirdTab.setText("Third"); // set the Text for the first Tab
+        thirdTab.setText(R.string.tab_3); // set the Text for the first Tab
         thirdTab.setIcon(R.drawable.ic_launcher_foreground); // set an icon for the first tab
         tabLayout.addTab(thirdTab); // add  the tab at in the TabLayout
 
@@ -50,13 +47,13 @@ public class MainActivity extends AppCompatActivity {
                 Fragment fragment = null;
                 switch (tab.getPosition()) {
                     case 0:
-                        fragment = new FirstFragment();
+                        fragment = new OverViewFragment();
                         break;
                     case 1:
-                        fragment = new SecondFragment();
+                        fragment = new DebitsFragment();
                         break;
                     case 2:
-                        fragment = new ThirdFragment();
+                        fragment = new CreditsFragment();
                         break;
                 }
                 FragmentManager fm = getSupportFragmentManager();

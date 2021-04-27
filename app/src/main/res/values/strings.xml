@@ -8,7 +8,4 @@
     <string name="debits_text">Recent Debits</string>
     <string name="credits_text">Recent Credits</string>
     <string name="overview">Overview of Credits/Debits</string>
-    <string name="second_fragment">Second Fragment</string>
-    <string name="first_fragment">First Fragment</string>
-    <string name="third_fragment">Third Fragment</string>
 </resources>

@@ -7,9 +7,9 @@ import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
 
-public class FirstFragment extends Fragment {
+public class OverViewFragment extends Fragment {
 
-    public FirstFragment() {
+    public OverViewFragment() {
 // Required empty public constructor
     }
 

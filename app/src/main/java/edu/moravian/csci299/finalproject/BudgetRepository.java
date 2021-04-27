@@ -20,7 +20,7 @@ public class BudgetRepository {
         database = Room.databaseBuilder(
                 context.getApplicationContext(),
                 BudgetDataBase.class,
-                "calendar_database").build();
+                "budget_database").build();
         budgetDao = database.budgetDao();
     }
 

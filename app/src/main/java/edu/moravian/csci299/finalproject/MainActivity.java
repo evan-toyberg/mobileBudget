@@ -24,18 +24,18 @@ public class MainActivity extends AppCompatActivity {
 // Create a new Tab named "First"
         TabLayout.Tab overViewTab = tabLayout.newTab();
         overViewTab.setText(R.string.tab_1); // set the Text for the first Tab
-        overViewTab.setIcon(R.drawable.ic_launcher_foreground); // set an icon for the
+        overViewTab.setIcon(R.mipmap.ic_overview_icon_foreground); // set an icon for the
 // first tab
         tabLayout.addTab(overViewTab); // add  the tab at in the TabLayout
 // Create a new Tab named "Second"
         TabLayout.Tab expensesTab = tabLayout.newTab();
         expensesTab.setText(R.string.tab_2); // set the Text for the second Tab
-        expensesTab.setIcon(R.drawable.ic_launcher_foreground); // set an icon for the second tab
+        expensesTab.setIcon(R.mipmap.ic_expense_icon_foreground); // set an icon for the second tab
         tabLayout.addTab(expensesTab); // add  the tab  in the TabLayout
 // Create a new Tab named "Third"
         TabLayout.Tab incomeTab = tabLayout.newTab();
         incomeTab.setText(R.string.tab_3); // set the Text for the first Tab
-        incomeTab.setIcon(R.mipmap.ic_income_icon); // set an icon for the first tab
+        incomeTab.setIcon(R.mipmap.ic_income_icon_foreground); // set an icon for the first tab
         tabLayout.addTab(incomeTab); // add  the tab at in the TabLayout
 
 

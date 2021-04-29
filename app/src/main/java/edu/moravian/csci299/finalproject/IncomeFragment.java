@@ -7,9 +7,9 @@ import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
 
-public class CreditsFragment extends Fragment {
+public class IncomeFragment extends Fragment {
 
-    public CreditsFragment() {
+    public IncomeFragment() {
 // Required empty public constructor
     }
 

@@ -22,21 +22,21 @@ public class MainActivity extends AppCompatActivity {
         simpleFrameLayout = (FrameLayout) findViewById(R.id.simpleFrameLayout);
         tabLayout = (TabLayout) findViewById(R.id.simpleTabLayout);
 // Create a new Tab named "First"
-        TabLayout.Tab firstTab = tabLayout.newTab();
-        firstTab.setText(R.string.tab_1); // set the Text for the first Tab
-        firstTab.setIcon(R.drawable.ic_launcher_foreground); // set an icon for the
+        TabLayout.Tab overViewTab = tabLayout.newTab();
+        overViewTab.setText(R.string.tab_1); // set the Text for the first Tab
+        overViewTab.setIcon(R.drawable.ic_launcher_foreground); // set an icon for the
 // first tab
-        tabLayout.addTab(firstTab); // add  the tab at in the TabLayout
+        tabLayout.addTab(overViewTab); // add  the tab at in the TabLayout
 // Create a new Tab named "Second"
-        TabLayout.Tab secondTab = tabLayout.newTab();
-        secondTab.setText(R.string.tab_2); // set the Text for the second Tab
-        secondTab.setIcon(R.drawable.ic_launcher_foreground); // set an icon for the second tab
-        tabLayout.addTab(secondTab); // add  the tab  in the TabLayout
+        TabLayout.Tab expensesTab = tabLayout.newTab();
+        expensesTab.setText(R.string.tab_2); // set the Text for the second Tab
+        expensesTab.setIcon(R.drawable.ic_launcher_foreground); // set an icon for the second tab
+        tabLayout.addTab(expensesTab); // add  the tab  in the TabLayout
 // Create a new Tab named "Third"
-        TabLayout.Tab thirdTab = tabLayout.newTab();
-        thirdTab.setText(R.string.tab_3); // set the Text for the first Tab
-        thirdTab.setIcon(R.drawable.ic_launcher_foreground); // set an icon for the first tab
-        tabLayout.addTab(thirdTab); // add  the tab at in the TabLayout
+        TabLayout.Tab incomeTab = tabLayout.newTab();
+        incomeTab.setText(R.string.tab_3); // set the Text for the first Tab
+        incomeTab.setIcon(R.mipmap.ic_income_icon); // set an icon for the first tab
+        tabLayout.addTab(incomeTab); // add  the tab at in the TabLayout
 
 
 // perform setOnTabSelectedListener event on TabLayout
@@ -50,10 +50,10 @@ public class MainActivity extends AppCompatActivity {
                         fragment = new OverViewFragment();
                         break;
                     case 1:
-                        fragment = new DebitsFragment();
+                        fragment = new ExpensesFragment();
                         break;
                     case 2:
-                        fragment = new CreditsFragment();
+                        fragment = new IncomeFragment();
                         break;
                 }
                 FragmentManager fm = getSupportFragmentManager();

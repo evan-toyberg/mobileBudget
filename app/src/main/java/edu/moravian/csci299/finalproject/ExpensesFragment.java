@@ -22,7 +22,7 @@ public class ExpensesFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.second_fragment, container, false);
+        return inflater.inflate(R.layout.income_fragment, container, false);
     }
 
 }

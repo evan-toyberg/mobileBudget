@@ -6,55 +6,50 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
+import android.view.MotionEvent;
+import android.view.View;
 import android.widget.FrameLayout;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
 
 public class MainActivity extends AppCompatActivity {
     FrameLayout simpleFrameLayout;
     TabLayout tabLayout;
-
+    FloatingActionButton addActon;
+    public int[] tabIcons = {R.drawable.schedule_icon, R.drawable.overview,
+            R.drawable.expenses_icon, R.drawable.income_icon};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-// get the reference of FrameLayout and TabLayout
+
         simpleFrameLayout = (FrameLayout) findViewById(R.id.simpleFrameLayout);
         tabLayout = (TabLayout) findViewById(R.id.simpleTabLayout);
-// Create a new Tab named "First"
-        TabLayout.Tab overViewTab = tabLayout.newTab();
-        overViewTab.setText(R.string.tab_1); // set the Text for the first Tab
-        overViewTab.setIcon(R.mipmap.ic_overview_icon_foreground); // set an icon for the
-// first tab
-        tabLayout.addTab(overViewTab); // add  the tab at in the TabLayout
-// Create a new Tab named "Second"
-        TabLayout.Tab expensesTab = tabLayout.newTab();
-        expensesTab.setText(R.string.tab_2); // set the Text for the second Tab
-        expensesTab.setIcon(R.mipmap.ic_expense_icon_foreground); // set an icon for the second tab
-        tabLayout.addTab(expensesTab); // add  the tab  in the TabLayout
-// Create a new Tab named "Third"
-        TabLayout.Tab incomeTab = tabLayout.newTab();
-        incomeTab.setText(R.string.tab_3); // set the Text for the first Tab
-        incomeTab.setIcon(R.mipmap.ic_income_icon_foreground); // set an icon for the first tab
-        tabLayout.addTab(incomeTab); // add  the tab at in the TabLayout
+        for (int tabIcon : tabIcons) {
+            tabLayout.addTab(tabLayout.newTab().setIcon(tabIcon));
+             
+        }
 
 
-// perform setOnTabSelectedListener event on TabLayout
-        tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
-// get the current selected tab's position and replace the fragment accordingly
                 Fragment fragment = null;
                 switch (tab.getPosition()) {
                     case 0:
-                        fragment = new OverViewFragment();
+                        fragment = new ScheduleFragment();
                         break;
                     case 1:
-                        fragment = new ExpensesFragment();
+                        fragment = new OverViewFragment();
                         break;
                     case 2:
+                        fragment = new ExpensesFragment();
+                        break;
+                    case 3:
                         fragment = new IncomeFragment();
                         break;
+
                 }
                 FragmentManager fm = getSupportFragmentManager();
                 FragmentTransaction ft = fm.beginTransaction();

@@ -27,8 +27,7 @@ public class Actions {
     @NonNull
     public Date startTime = new Date();
     /**
-     * The ending time. If the endTime is null then this "event" is actually an
-     * assignment with a due date (the start time).
+     * End time of action
      */
     public Date endTime = null;
     /**
@@ -37,12 +36,12 @@ public class Actions {
     @NonNull
     public String name = "New Action";
     /**
-     * The type of the event.
+     * The type of the action.
      */
 //    @NonNull
 //    public ActionType type = ActionType.GENERIC;
     /**
-     * The description of the event.
+     * The description of the action.
      */
     @NonNull
     public String description = "";

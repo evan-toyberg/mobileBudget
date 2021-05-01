@@ -13,11 +13,13 @@
         app:tabBackground="@android:color/darker_gray"
         app:tabIndicatorColor="#f00"
         app:tabSelectedTextColor="#f00"
+        android:background="@color/black"
         app:tabTextColor="#000" />
 
     <FrameLayout
         android:id="@+id/simpleFrameLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
+
 
 </LinearLayout>

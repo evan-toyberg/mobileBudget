@@ -1,11 +1,14 @@
 <resources>
     <string name="app_name">Mobile Budget</string>
     <string name="title_activity_budget_tab">BudgetTabActivity</string>
-    <string name="tab_1">Overview</string>
-    <string name="tab_2">Expenses</string>
-    <string name="tab_3">Income</string>
+    <string name="tab_1">Schedule</string>
+    <string name="tab_2">Overview</string>
+    <string name="tab_3">Expenses</string>
+    <string name="tab_4">Income</string>
     <string name="next">Next</string>
     <string name="debits_text">Recent Debits</string>
     <string name="credits_text">Recent Credits</string>
     <string name="overview">Overview of Credits/Debits</string>
+    <string name="fab">Fab</string>
+    <string name="add">add</string>
 </resources>

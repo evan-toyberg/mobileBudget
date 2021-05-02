@@ -50,15 +50,14 @@ public class IncomeFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        LiveData<List<Action>> eventDataItems = BudgetRepository.get().getIncomes();
-        eventDataItems.observe(this, actions -> {
+        LiveData<List<Action>> actionDataItems = BudgetRepository.get().getIncomes();
+        actionDataItems.observe(this, actions -> {
             this.actions = actions;
             Objects.requireNonNull(listView.getAdapter()).notifyDataSetChanged();
 
         });
         setHasOptionsMenu(true);
     }
-
 
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {

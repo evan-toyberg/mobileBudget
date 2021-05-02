@@ -12,15 +12,10 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.DialogFragment;
 
+import java.util.Objects;
+
 /**
  * A fragment that acts as a popup window for picking a type of an action
- . Any fragment that uses
- * this must implement the Callbacks interface defined here and set the target fragment before
- * showing it.
- *
- * NOTE: This class is done. If you add additional action
- types they will automatically show up
- * here. You will need to use this class like the other dialog fragments.
  */
 public class ActionTypePickerFragment extends DialogFragment {
     private static final ActionType[] ACTION_TYPES = ActionType.values();
@@ -69,7 +64,7 @@ public class ActionTypePickerFragment extends DialogFragment {
         b.setTitle(R.string.action_type);
         b.setAdapter(new actionTypesListAdapter(), (dialog, which) -> {
             dialog.dismiss();
-            ((Callbacks)getTargetFragment()).onTypeSelected(ACTION_TYPES[which]);
+            ((Callbacks) Objects.requireNonNull(getTargetFragment())).onTypeSelected(ACTION_TYPES[which]);
         });
         return b.create();
     }
@@ -95,7 +90,7 @@ public class ActionTypePickerFragment extends DialogFragment {
         public View getView(int position, View view, ViewGroup parent) {
             // reuse the view or load it new
             if (view == null) {
-                view = getLayoutInflater().inflate(R.layout.action_fragment, parent, false);
+                view = getLayoutInflater().inflate(R.layout.action_type, parent, false);
             }
 
             // set the icon and name

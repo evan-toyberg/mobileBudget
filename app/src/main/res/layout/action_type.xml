@@ -13,7 +13,7 @@
         android:orientation="horizontal">
 
         <ImageView
-            android:id="@+id/eventTypeIcon"
+            android:id="@+id/actionTypeIcon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
@@ -23,7 +23,7 @@
             tools:ignore="NestedWeights" />
 
         <TextView
-            android:id="@+id/eventTypeName"
+            android:id="@+id/actionTypeName"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"

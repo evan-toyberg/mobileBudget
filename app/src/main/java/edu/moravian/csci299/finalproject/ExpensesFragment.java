@@ -65,7 +65,6 @@ public class ExpensesFragment extends Fragment {
         if (item.getItemId() == R.id.new_expense) {
             Action action = new Action();
             action.type = ActionType.EXPENSE;
-
             action.endTime = DateUtils.useDateOrNow(date);
             BudgetRepository.get().addAction(action);
             callbacks.onActionSelected(action);
@@ -100,7 +99,7 @@ public class ExpensesFragment extends Fragment {
      */
     private class ActionViewHolder extends RecyclerView.ViewHolder {
         Action action;
-        TextView name, description, endTime;
+        TextView name, description, amountView, endTime;
         ImageView typeView;
 
         public ActionViewHolder(@NonNull View actionView) {
@@ -109,7 +108,7 @@ public class ExpensesFragment extends Fragment {
             description = actionView.findViewById(R.id.action_description);
             endTime = actionView.findViewById(R.id.action_end_time);
             typeView = actionView.findViewById(R.id.imageView);
-
+            amountView = actionView.findViewById(R.id.action_amount);
             actionView.setOnClickListener(v -> callbacks.onActionSelected(action));
         }
     }

@@ -38,8 +38,8 @@ public class Actions {
     /**
      * The type of the action.
      */
-//    @NonNull
-//    public ActionType type = ActionType.GENERIC;
+    @NonNull
+    public ActionType type = ActionType.INCOME;
     /**
      * The description of the action.
      */

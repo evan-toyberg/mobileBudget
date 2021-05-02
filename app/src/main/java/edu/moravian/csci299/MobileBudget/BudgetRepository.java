@@ -1,11 +1,10 @@
-package edu.moravian.csci299.finalproject;
+package edu.moravian.csci299.MobileBudget;
 
 import android.content.Context;
 
 import androidx.lifecycle.LiveData;
 import androidx.room.Room;
 
-import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.Executor;

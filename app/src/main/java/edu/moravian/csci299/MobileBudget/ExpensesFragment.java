@@ -1,6 +1,7 @@
-package edu.moravian.csci299.finalproject;
+package edu.moravian.csci299.MobileBudget;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -88,6 +89,7 @@ public class ExpensesFragment extends Fragment {
         listView.setAdapter(adapter);
         title = base.findViewById(R.id.title);
         title.setText(R.string.expenses_text);
+        title.setTextColor(Color.RED);
 
 
         return base;

@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="edu.moravian.csci299.finalproject">
+    package="edu.moravian.csci299.MobileBudget">
 
     <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
-        android:name=".BudgetApplication"
+        android:name="edu.moravian.csci299.MobileBudget.BudgetApplication"
         android:allowBackup="true"
         android:icon="@drawable/income_icon"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/Theme.FinalProject">
-        <activity android:name=".MainActivity">
+        android:theme="@style/Theme.MobileBudget">
+        <activity android:name="edu.moravian.csci299.MobileBudget.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

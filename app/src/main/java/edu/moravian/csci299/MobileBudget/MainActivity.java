@@ -1,4 +1,4 @@
-package edu.moravian.csci299.finalproject;
+package edu.moravian.csci299.MobileBudget;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -8,13 +8,15 @@ import androidx.fragment.app.FragmentTransaction;
 import android.os.Bundle;
 import android.widget.FrameLayout;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
 
+/**
+ * Authors: Kyle, Evan
+ * Mobile Buget App
+ */
 public class MainActivity extends AppCompatActivity implements IncomeFragment.Callbacks, ExpensesFragment.Callbacks {
     FrameLayout simpleFrameLayout;
     TabLayout tabLayout;
-    FloatingActionButton addActon;
     public int[] tabIcons = {R.drawable.schedule_icon, R.drawable.overview,
             R.drawable.expenses_icon, R.drawable.income_icon};
     @Override
@@ -27,6 +29,8 @@ public class MainActivity extends AppCompatActivity implements IncomeFragment.Ca
         for (int tabIcon : tabIcons) {
             tabLayout.addTab(tabLayout.newTab().setIcon(tabIcon));
         }
+
+
 
         // Open scheduleFragment on app launch
         FragmentManager fm = getSupportFragmentManager();

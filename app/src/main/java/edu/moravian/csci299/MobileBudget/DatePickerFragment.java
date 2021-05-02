@@ -1,4 +1,4 @@
-package edu.moravian.csci299.finalproject;
+package edu.moravian.csci299.MobileBudget;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;

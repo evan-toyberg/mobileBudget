@@ -14,7 +14,7 @@ import java.util.UUID;
  * NOTE: this class is complete.
  */
 @Entity
-public class Actions {
+public class Action {
     /**
      * The id of the event is the primary key in the database.
      */

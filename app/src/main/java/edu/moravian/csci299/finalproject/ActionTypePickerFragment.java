@@ -1,4 +1,4 @@
-package edu.moravian.csci299.mocalendar;
+package edu.moravian.csci299.finalproject;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -20,8 +20,8 @@ import androidx.fragment.app.DialogFragment;
  * NOTE: This class is done. If you add additional event types they will automatically show up
  * here. You will need to use this class like the other dialog fragments.
  */
-public class EventTypePickerFragment extends DialogFragment {
-    private static final EventType[] EVENT_TYPES = EventType.values();
+public class ActionTypePickerFragment extends DialogFragment {
+    private static final ActionType[] ACTION_TYPES = ActionType.values();
 
     /**
      * The callbacks for when a type is selected.
@@ -32,7 +32,7 @@ public class EventTypePickerFragment extends DialogFragment {
          *
          * @param type the event type that was picked
          */
-        void onTypeSelected(EventType type);
+        void onTypeSelected(ActionType type);
     }
 
     /**
@@ -46,8 +46,8 @@ public class EventTypePickerFragment extends DialogFragment {
      * @param type the type to initially display in the picker
      * @return a new EventTypePickerFragment instance
      */
-    public static EventTypePickerFragment newInstance(EventType type) {
-        EventTypePickerFragment fragment = new EventTypePickerFragment();
+    public static ActionTypePickerFragment newInstance(ActionType type) {
+        ActionTypePickerFragment fragment = new ActionTypePickerFragment();
         Bundle args = new Bundle();
         args.putString(ARG_INITIAL_TYPE, type.name());
         fragment.setArguments(args);
@@ -61,10 +61,10 @@ public class EventTypePickerFragment extends DialogFragment {
     @NonNull
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         AlertDialog.Builder b = new AlertDialog.Builder(getContext());
-        b.setTitle(R.string.event_type);
+        b.setTitle(R.string.action_type);
         b.setAdapter(new EventTypesListAdapter(), (dialog, which) -> {
             dialog.dismiss();
-            ((Callbacks)getTargetFragment()).onTypeSelected(EVENT_TYPES[which]);
+            ((Callbacks)getTargetFragment()).onTypeSelected(ACTION_TYPES[which]);
         });
         return b.create();
     }
@@ -74,13 +74,13 @@ public class EventTypePickerFragment extends DialogFragment {
      */
     private class EventTypesListAdapter extends BaseAdapter {
         @Override
-        public int getCount() { return EVENT_TYPES.length; }
+        public int getCount() { return ACTION_TYPES.length; }
 
         @Override
-        public Object getItem(int position) { return EVENT_TYPES[position]; }
+        public Object getItem(int position) { return ACTION_TYPES[position]; }
 
         @Override
-        public long getItemId(int position) { return EVENT_TYPES[position].hashCode(); }
+        public long getItemId(int position) { return ACTION_TYPES[position].hashCode(); }
 
         @Override
         public boolean hasStableIds() { return true; }
@@ -89,13 +89,13 @@ public class EventTypePickerFragment extends DialogFragment {
         public View getView(int position, View view, ViewGroup parent) {
             // reuse the view or load it new
             if (view == null) {
-                view = getLayoutInflater().inflate(R.layout.event_type_item, parent, false);
+                view = getLayoutInflater().inflate(R.layout.action_fragment, parent, false);
             }
 
             // set the icon and name
-            EventType type = EVENT_TYPES[position];
-            ((ImageView)view.findViewById(R.id.eventTypeIcon)).setImageResource(type.iconResourceId);
-            ((TextView)view.findViewById(R.id.eventTypeName)).setText(type.simpleName);
+            ActionType type = ACTION_TYPES[position];
+            ((ImageView)view.findViewById(R.id.actionTypeIcon)).setImageResource(type.iconResourceId);
+            ((TextView)view.findViewById(R.id.actionTypeName)).setText(type.simpleName);
 
             // returns the view
             return view;

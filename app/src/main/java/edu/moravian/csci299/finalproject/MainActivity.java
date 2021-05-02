@@ -28,8 +28,12 @@ public class MainActivity extends AppCompatActivity {
         tabLayout = (TabLayout) findViewById(R.id.simpleTabLayout);
         for (int tabIcon : tabIcons) {
             tabLayout.addTab(tabLayout.newTab().setIcon(tabIcon));
-             
         }
+
+        // Open scheduleFragment on app launch
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+        ft.replace(R.id.simpleFrameLayout, new ScheduleFragment()).commit();
 
 
 
@@ -50,7 +54,6 @@ public class MainActivity extends AppCompatActivity {
                     case 3:
                         fragment = new IncomeFragment();
                         break;
-
                 }
                 FragmentManager fm = getSupportFragmentManager();
                 FragmentTransaction ft = fm.beginTransaction();

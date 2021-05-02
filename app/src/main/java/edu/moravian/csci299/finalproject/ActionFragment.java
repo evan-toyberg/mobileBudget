@@ -15,39 +15,42 @@ import androidx.fragment.app.Fragment;
 import java.util.Date;
 import java.util.UUID;
 
+/**
+ * Action fragment class controls all responsibilities for a single action.
+ * It sets the text for name/description/amount/end date.
+ */
+
 public class ActionFragment extends Fragment implements TextWatcher, ActionTypePickerFragment.Callbacks, DatePickerFragment.Callbacks {
 
     // fragment initialization parameters
-    private static final String ARG_EVENT_ID = "event_id";
+    private static final String ARG_ACTION_ID = "action_id";
 
     // dialog fragment tags
     private static final String DIALOG_DATE = "DialogDate";
-    private static final String DIALOG_TIME = "DialogTime";
-    private static final String DIALOG_EVENT_TYPE = "DialogEventType";
+    private static final String DIALOG_ACTION_TYPE = "DialogActionType";
 
     // dialog fragment codes
     private static final int REQUEST_DATE = 0;
-    private static final int REQUEST_TIME = 1;
-    private static final int REQUEST_EVENT_TYPE = 2;
+    private static final int REQUEST_ACTION_TYPE = 2;
 
     // argument once loaded from database
     private Action action;
     private TextView dateView;
-    private EditText description, eventNameView, amountView;
+    private EditText description, actionNameView, amountView;
 
     private ImageView typeView;
 
     /**
      * Use this factory method to create a new instance of this fragment that
-     * show the details for the given event.
+     * show the details for the given action.
      *
-     * @param action the event to show information about
-     * @return a new instance of fragment EventFragment
+     * @param action the action to show information about
+     * @return a new instance of fragment actionFragment
      */
     public static ActionFragment newInstance(Action action) {
         ActionFragment fragment = new ActionFragment();
         Bundle args = new Bundle();
-        args.putSerializable(ARG_EVENT_ID, action.id);
+        args.putSerializable(ARG_ACTION_ID, action.id);
         fragment.setArguments(args);
         return fragment;
     }
@@ -60,7 +63,7 @@ public class ActionFragment extends Fragment implements TextWatcher, ActionTypeP
         super.onCreate(savedInstanceState);
         assert getArguments() != null;
         BudgetRepository.get().getActionById((UUID) getArguments()
-                .getSerializable(ARG_EVENT_ID)).observe(this, action -> {
+                .getSerializable(ARG_ACTION_ID)).observe(this, action -> {
             this.action = action;
             updateUI();
         });
@@ -91,8 +94,8 @@ public class ActionFragment extends Fragment implements TextWatcher, ActionTypeP
         dateView = base.findViewById(R.id.dateView);
         dateView.setOnClickListener(v -> showDatePicker());
 
-        eventNameView = base.findViewById(R.id.actionTypeName);
-        eventNameView.addTextChangedListener(this);
+        actionNameView = base.findViewById(R.id.actionTypeName);
+        actionNameView.addTextChangedListener(this);
 
 
 
@@ -114,38 +117,44 @@ public class ActionFragment extends Fragment implements TextWatcher, ActionTypeP
     }
 
     /**
-     * Updates the UI to match the event.
+     * Updates the UI to match the action.
      */
     private void updateUI() {
-        eventNameView.setText(action.name);
+        actionNameView.setText(action.name);
         dateView.setText(DateUtils.toFullDateString(action.endTime));
         amountView.setText(String.valueOf(action.amount));
         description.setText(action.description);
 
     }
 
+    /**
+     * Shows the date picker dialog
+     */
     private void showDatePicker() {
         DatePickerFragment picker = DatePickerFragment.newInstance(action.endTime);
         picker.setTargetFragment(this, REQUEST_DATE);
         picker.show(requireFragmentManager(), DIALOG_DATE);
     }
 
+    /**
+     * Shows the type picker dialog
+     */
     private void showActionTypePicker() {
         ActionTypePickerFragment picker = ActionTypePickerFragment.newInstance(action.type);
-        picker.setTargetFragment(this, REQUEST_EVENT_TYPE);
-        picker.show(requireFragmentManager(), DIALOG_EVENT_TYPE);
+        picker.setTargetFragment(this, REQUEST_ACTION_TYPE);
+        picker.show(requireFragmentManager(), DIALOG_ACTION_TYPE);
     }
 
 
     /**
-     * When an EditText updates we update the corresponding Event field. Need to register this
+     * When an EditText updates we update the corresponding action field. Need to register this
      * object with the EditText objects with addTextChangedListener(this).
      *
      * @param s the editable object that just updated, equal to some EditText.getText() object
      */
     @Override
     public void afterTextChanged(Editable s) {
-        if (s.equals(eventNameView.getText())) {
+        if (s.equals(actionNameView.getText())) {
             action.name = s.toString();
         } else if (s.equals(amountView.getText())){
             action.amount = String.valueOf(amountView.getText());
@@ -171,11 +180,20 @@ public class ActionFragment extends Fragment implements TextWatcher, ActionTypeP
     }
 
 
+    /**
+     * Sets the date that is selected to the events endtime
+     * @param date the date that was picked
+     */
     @Override
     public void onDateSelected(Date date) {
         action.endTime = date;
         updateUI();
     }
+
+    /**
+     * sets the action to the type selected
+     * @param type the action type
+     */
 
     @Override
     public void onTypeSelected(ActionType type) {

@@ -43,16 +43,16 @@ public class ExpensesFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        LiveData<List<Action>> eventDataItems = BudgetRepository.get().getExpenses();
+        eventDataItems.observe(this, actions -> {
+            this.actions = actions;
+            Objects.requireNonNull(listView.getAdapter()).notifyDataSetChanged();
 
+        });
         setHasOptionsMenu(true);
     }
 
-    public void setDay(Date date) {
-        this.date = date;
-        assert getArguments() != null;
-        getArguments().putSerializable(ARG_DATE, date);
-        onDateChange();
-    }
+
 
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
@@ -64,6 +64,8 @@ public class ExpensesFragment extends Fragment {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.new_expense) {
             Action action = new Action();
+            action.type = ActionType.EXPENSE;
+
             action.endTime = DateUtils.useDateOrNow(date);
             BudgetRepository.get().addAction(action);
             callbacks.onActionSelected(action);
@@ -72,6 +74,9 @@ public class ExpensesFragment extends Fragment {
             return super.onOptionsItemSelected(item);
     }
 
+    /**
+     * Create the view for this layout, as well as set adapter for recycler view. Also sets the title text.
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -89,7 +94,10 @@ public class ExpensesFragment extends Fragment {
         return base;
     }
 
-
+    /**
+     * Each item in the list uses this ViewHolder to be
+     * displayed.
+     */
     private class ActionViewHolder extends RecyclerView.ViewHolder {
         Action action;
         TextView name, description, endTime;
@@ -106,17 +114,6 @@ public class ExpensesFragment extends Fragment {
         }
     }
 
-    private void onDateChange() {
-        int[] yearMonthDay = DateUtils.getYearMonthDay(date);
-        // get events for currently selected date from 12 AM to 12 PM
-        LiveData<List<Action>> eventDataItems = BudgetRepository.get().getActionsOnDay(DateUtils.getDate(yearMonthDay[0], yearMonthDay[1], yearMonthDay[2]));
-        eventDataItems.observe(this, actions -> {
-            this.actions = actions;
-            Objects.requireNonNull(listView.getAdapter()).notifyDataSetChanged();
-            title.setText(DateUtils.toFullDateString(date));
-
-        });
-    }
 
     @Override
     public void onAttach(@NonNull Context context) {

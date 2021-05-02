@@ -11,6 +11,9 @@ import java.util.UUID;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
+/**
+ * The singleton repository for the database.
+ */
 public class BudgetRepository {
     private final BudgetDataBase database;
     private final BudgetDAO budgetDao;
@@ -33,8 +36,11 @@ public class BudgetRepository {
     }
 
 
-    public LiveData<List<Action>> getActionsOnDay(Date day) {
-        return budgetDao.getActionsOnDay(day);
+    public LiveData<List<Action>> getIncomes() {
+        return budgetDao.getAllByType(ActionType.INCOME);
+    }
+    public LiveData<List<Action>> getExpenses() {
+        return budgetDao.getAllByType(ActionType.EXPENSE);
     }
 
     public void addAction(Action action) {

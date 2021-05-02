@@ -13,12 +13,14 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.LiveData;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 public class IncomeFragment extends Fragment {
     private RecyclerView listView;
@@ -48,7 +50,12 @@ public class IncomeFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        LiveData<List<Action>> eventDataItems = BudgetRepository.get().getIncomes();
+        eventDataItems.observe(this, actions -> {
+            this.actions = actions;
+            Objects.requireNonNull(listView.getAdapter()).notifyDataSetChanged();
 
+        });
         setHasOptionsMenu(true);
     }
 
@@ -90,14 +97,14 @@ public class IncomeFragment extends Fragment {
 
     private class ActionViewHolder extends RecyclerView.ViewHolder {
         Action action;
-        TextView name, description, amount, endTime;
+        TextView name, description, amountView, endTime;
         ImageView typeView;
 
         public ActionViewHolder(@NonNull View actionView) {
             super(actionView);
             name = actionView.findViewById(R.id.action_name);
             description = actionView.findViewById(R.id.action_description);
-            amount = actionView.findViewById(R.id.amount);
+            amountView = actionView.findViewById(R.id.action_amount);
             endTime = actionView.findViewById(R.id.action_end_time);
             typeView = actionView.findViewById(R.id.imageView);
 
@@ -150,7 +157,7 @@ public class IncomeFragment extends Fragment {
             holder.name.setText(action.name);
             holder.description.setText(action.description);
             holder.typeView.setImageResource(action.type.iconResourceId);
-            holder.amount.setText(action.amount);
+            holder.amountView.setText(action.amount);
             holder.endTime.setText(DateUtils.toTimeString(action.endTime));
 
         }

@@ -13,11 +13,13 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.DialogFragment;
 
 /**
- * A fragment that acts as a popup window for picking a type of an event. Any fragment that uses
+ * A fragment that acts as a popup window for picking a type of an action
+ . Any fragment that uses
  * this must implement the Callbacks interface defined here and set the target fragment before
  * showing it.
  *
- * NOTE: This class is done. If you add additional event types they will automatically show up
+ * NOTE: This class is done. If you add additional action
+ types they will automatically show up
  * here. You will need to use this class like the other dialog fragments.
  */
 public class ActionTypePickerFragment extends DialogFragment {
@@ -30,7 +32,8 @@ public class ActionTypePickerFragment extends DialogFragment {
         /**
          * This function is called when a type is selected and the dialog is confirmed.
          *
-         * @param type the event type that was picked
+         * @param type the action
+         *          type that was picked
          */
         void onTypeSelected(ActionType type);
     }
@@ -41,10 +44,12 @@ public class ActionTypePickerFragment extends DialogFragment {
     private static final String ARG_INITIAL_TYPE = "initial_type";
 
     /**
-     * Create a new instance of the event type picking fragment dialog.
+     * Create a new instance of the action
+     type picking fragment dialog.
      *
      * @param type the type to initially display in the picker
-     * @return a new EventTypePickerFragment instance
+     * @return a new action
+     TypePickerFragment instance
      */
     public static ActionTypePickerFragment newInstance(ActionType type) {
         ActionTypePickerFragment fragment = new ActionTypePickerFragment();
@@ -62,7 +67,7 @@ public class ActionTypePickerFragment extends DialogFragment {
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         AlertDialog.Builder b = new AlertDialog.Builder(getContext());
         b.setTitle(R.string.action_type);
-        b.setAdapter(new EventTypesListAdapter(), (dialog, which) -> {
+        b.setAdapter(new actionTypesListAdapter(), (dialog, which) -> {
             dialog.dismiss();
             ((Callbacks)getTargetFragment()).onTypeSelected(ACTION_TYPES[which]);
         });
@@ -70,9 +75,10 @@ public class ActionTypePickerFragment extends DialogFragment {
     }
 
     /**
-     * Adapt the list of event types to a set of views the can be displayed in an alert box.
+     * Adapt the list of action
+     types to a set of views the can be displayed in an alert box.
      */
-    private class EventTypesListAdapter extends BaseAdapter {
+    private class actionTypesListAdapter extends BaseAdapter {
         @Override
         public int getCount() { return ACTION_TYPES.length; }
 

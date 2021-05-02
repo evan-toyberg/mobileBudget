@@ -1,5 +1,8 @@
 package edu.moravian.csci299.finalproject;
 
+/**
+ * The different types of action types that can be displayed with an action
+ */
 public enum ActionType {
     INCOME("Income", R.drawable.income_icon),
     EXPENSE("Expense", R.drawable.expenses_icon);

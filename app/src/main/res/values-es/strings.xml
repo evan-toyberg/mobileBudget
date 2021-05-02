@@ -1,12 +1,21 @@
 <resources>
+    <string name="app_name" translatable="false">Mobile Budget</string>
     <string name="title_activity_budget_tab">BudgetTabActivity</string>
     <string name="tab_1">Calendario</string>
     <string name="tab_2">Descripción general</string>
-    <string name="expenses">Gastos</string>
-    <string name="income">Ingreso</string>
+    <string name="tab_3">Gastos</string>
+    <string name="tab_4">Ingreso</string>
     <string name="next">próximo</string>
-    <string name="debits_text">Débitos recientes</string>
-    <string name="credits_text">Créditos recientes</string>
+    <string name="expenses_text">Gastos recientes</string>
+    <string name="income_text">Ingresos recientes</string>
     <string name="overview">Resumen de créditos /débitos</string>
     <string name="add">agregar</string>
+    <string name="button_Text">fabDescription</string>
+    <string name="action_type">tipo de acción</string>
+    <string name="action_description" translatable="false">Action description</string>
+    <string name="new_income">Ingresos nuevos</string>
+    <string name="new_expense">Nuevo gasto</string>
+    <string name="button">Botón</string>
+    <string name="url">https://es-us.finanzas.yahoo.com</string>
+
 </resources>

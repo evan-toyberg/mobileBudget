@@ -3,8 +3,8 @@
     <string name="title_activity_budget_tab">BudgetTabActivity</string>
     <string name="tab_1">Schedule</string>
     <string name="tab_2">Overview</string>
-    <string name="tab_3" translatable="false">Expenses</string>
-    <string name="tab_4" translatable="false">Income</string>
+    <string name="tab_3">Expenses</string>
+    <string name="tab_4">Income</string>
     <string name="next">Next</string>
     <string name="expenses_text" tools:ignore="MissingTranslation">Recent Expenses</string>
     <string name="income_text" tools:ignore="MissingTranslation">Recent Income</string>
@@ -15,6 +15,8 @@
     <string name="action_description" translatable="false">Action description</string>
     <string name="new_income" tools:ignore="MissingTranslation">New Income</string>
     <string name="new_expense" tools:ignore="MissingTranslation">New Expense</string>
-    <string name="button" translatable="false">Button</string>
+    <string name="button">Button</string>
     <string name="dollar_sign" translatable="false">$</string>
+    <string name="url">https://finance.yahoo.com</string>
+
 </resources>

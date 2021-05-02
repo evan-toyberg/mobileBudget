@@ -17,7 +17,8 @@
         app:selectionColor="@color/calendarSelectedDay"
         />
 
-    <WebView
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/actionsOnDay"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 

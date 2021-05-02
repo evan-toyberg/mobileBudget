@@ -157,6 +157,7 @@ public class ExpensesFragment extends Fragment {
             holder.name.setText(action.name);
             holder.description.setText(action.description);
             holder.typeView.setImageResource(action.type.iconResourceId);
+            holder.amountView.setText(action.amount);
             holder.endTime.setText(DateUtils.toTimeString(action.endTime));
 
         }

@@ -8,30 +8,34 @@ import java.util.Date;
 import java.util.UUID;
 
 /**
- * An Event object contains all of the information about a single event or
- * assignment due date.
+ * An action
+ * object contains all of the information about an action
  *
- * NOTE: this class is complete.
  */
 @Entity
 public class Action {
     /**
-     * The id of the event is the primary key in the database.
+     * The id of the action
+     * is the primary key in the database.
      */
     @PrimaryKey
     @NonNull
     public UUID id = UUID.randomUUID();
     /**
-     * Start time for the event. If the endTIme is null, this represents the due date.
+     * Start time for the action
+     * . If the endTIme is null, this represents the due date.
      */
     @NonNull
-    public Date startTime = new Date();
+    public String amount = "";
+
     /**
      * End time of action
      */
+    @NonNull
     public Date endTime = null;
     /**
-     * Name of the event.
+     * Name of the action
+     * .
      */
     @NonNull
     public String name = "New Action";

@@ -24,35 +24,32 @@ public class BudgetRepository {
         budgetDao = database.budgetDao();
     }
 
-    public LiveData<List<Actions>> getAllActions() {
+    public LiveData<List<Action>> getAllActions() {
         return budgetDao.getAllActions();
     }
 
-    public LiveData<Actions> getActionById(UUID id) {
+    public LiveData<Action> getActionById(UUID id) {
         return budgetDao.getActionById(id);
     }
 
-    public LiveData<List<Actions>> getActionsBetween(Date start, Date end) {
-        return budgetDao.getActionsBetween(start, end);
-    }
 
-    public LiveData<List<Actions>> getActionsOnDay(Date day) {
+    public LiveData<List<Action>> getActionsOnDay(Date day) {
         return budgetDao.getActionsOnDay(day);
     }
 
-    public void addAction(Actions action) {
+    public void addAction(Action action) {
         executor.execute(() -> {
             budgetDao.addActions(action);
         });
     }
 
-    public void removeAction(Actions action) {
+    public void removeAction(Action action) {
         executor.execute(() -> {
             budgetDao.removeAction(action);
         });
     }
 
-    public void updateAction(Actions action) {
+    public void updateAction(Action action) {
         executor.execute(() -> {
             budgetDao.updateAction(action);
         });

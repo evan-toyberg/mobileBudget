@@ -3,16 +3,12 @@
     package="edu.moravian.csci299.finalproject">
 
     <application
+        android:name=".BudgetApplication"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/income_icon"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.FinalProject">
-        <activity
-            android:name=".BudgetTabActivity"
-            android:label="@string/title_activity_budget_tab"
-            android:theme="@style/Theme.FinalProject.NoActionBar" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

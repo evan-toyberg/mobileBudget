@@ -1,6 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="88dp"
+        android:layout_weight="0"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/actionTypeIcon"
+            android:layout_width="49dp"
+            android:layout_height="84dp"
+            android:layout_gravity="center_vertical"
+            android:contentDescription="@string/action_type"
+            android:padding="5dp"
+            app:srcCompat="@drawable/income_icon"
+            tools:ignore="NestedWeights" />
+
+        <EditText
+            android:id="@+id/actionTypeName"
+            android:layout_width="match_parent"
+            android:layout_height="65dp"
+            android:autofillHints="Event Name"
+            android:hint="@string/action_type"
+            android:inputType=""
+            android:padding="5dp"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            tools:text="Enter Action Name" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="0"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/dateView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:paddingLeft="2dp"
+            android:paddingRight="10dp"
+            android:textSize="20sp"
+            tools:text="Friday April 15, 2021" />
+
+        <TextView
+            android:id="@+id/money"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/dollar_sign"
+            android:paddingLeft="2dp"
+            android:paddingRight="2dp"
+            android:textSize="20sp" />
+        <EditText
+            android:id="@+id/amount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:paddingLeft="2dp"
+            android:paddingRight="2dp"
+            android:textSize="20sp"
+            tools:text="200" />
+
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/description"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_weight="0"
+        android:autofillHints="Action Description"
+        android:padding="5dp"
+        android:hint="@string/action_type"
+        android:inputType=""
+        android:textSize="20sp"
+        tools:text="Enter Action description" />
+
 
 </LinearLayout>
+
+
+
+
+

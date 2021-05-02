@@ -1,4 +1,4 @@
-package edu.moravian.csci299.mocalendar;
+package edu.moravian.csci299.finalproject;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;

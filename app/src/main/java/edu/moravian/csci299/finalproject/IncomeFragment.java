@@ -1,7 +1,11 @@
 package edu.moravian.csci299.finalproject;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -12,28 +16,59 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
 public class IncomeFragment extends Fragment {
     private RecyclerView listView;
-    private TextView dateText;
-    private List<Actions> actions = Collections.emptyList();
+    private TextView title;
+    private List<Action> actions = Collections.emptyList();
     private Callbacks callbacks;
-    private FloatingActionButton fab;
+    private Date date;
+    private static final String ARG_DATE = "date";
 
     public IncomeFragment() {
 // Required empty public constructor
     }
+
+    public static IncomeFragment newInstance(Date date) {
+        IncomeFragment fragment = new IncomeFragment();
+        Bundle args = new Bundle();
+        args.putSerializable(ARG_DATE, date);
+        fragment.setArguments(args);
+        return fragment;
+    }
+
     interface Callbacks {
 
-        void onEventSelected(Actions action);
+        void onActionSelected(Action action);
     }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        setHasOptionsMenu(true);
+    }
+
+
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.income_menu, menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == R.id.new_income) {
+            Action action = new Action();
+            action.endTime = DateUtils.useDateOrNow(date);
+            BudgetRepository.get().addAction(action);
+            callbacks.onActionSelected(action);
+            return true;
+        } else
+            return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -41,33 +76,46 @@ public class IncomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         ActionListAdapter adapter = new ActionListAdapter();
 // Inflate the layout for this fragment
-        View base = inflater.inflate(R.layout.overview_fragment, container, false);
+        View base = inflater.inflate(R.layout.fragment_list, container, false);
 
         listView = base.findViewById(R.id.list_view);
         listView.setLayoutManager(new LinearLayoutManager(getContext()));
         listView.setAdapter(adapter);
-        dateText = base.findViewById(R.id.date);
-        fab = (FloatingActionButton) base.findViewById(R.id.floatingActionButton);
-
+        title = base.findViewById(R.id.title);
+        title.setText(R.string.income_text);
 
         return base;
     }
 
+
     private class ActionViewHolder extends RecyclerView.ViewHolder {
-        Actions action;
-        TextView name, description, startTime, endTime;
+        Action action;
+        TextView name, description, amount, endTime;
         ImageView typeView;
 
         public ActionViewHolder(@NonNull View actionView) {
             super(actionView);
             name = actionView.findViewById(R.id.action_name);
             description = actionView.findViewById(R.id.action_description);
-            startTime = actionView.findViewById(R.id.action_start_time);
+            amount = actionView.findViewById(R.id.amount);
             endTime = actionView.findViewById(R.id.action_end_time);
             typeView = actionView.findViewById(R.id.imageView);
 
-            actionView.setOnClickListener(v -> callbacks.onEventSelected(action));
+            actionView.setOnClickListener(v -> callbacks.onActionSelected(action));
         }
+    }
+
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        callbacks = (Callbacks) context;
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        callbacks = null;
     }
 
     /**
@@ -97,15 +145,14 @@ public class IncomeFragment extends Fragment {
         @Override
         public void onBindViewHolder(@NonNull ActionViewHolder holder, int position) {
 
-            Actions action = actions.get(position);
+            Action action = actions.get(position);
             holder.action = action;
             holder.name.setText(action.name);
             holder.description.setText(action.description);
-            holder.startTime.setText(DateUtils.toTimeString(action.startTime));
-//            holder.typeView.setImageResource(action.type.iconResourceId);
-            if (action.endTime != null) {
-                holder.endTime.setText(DateUtils.toTimeString(action.endTime));
-            }
+            holder.typeView.setImageResource(action.type.iconResourceId);
+            holder.amount.setText(action.amount);
+            holder.endTime.setText(DateUtils.toTimeString(action.endTime));
+
         }
 
         /**

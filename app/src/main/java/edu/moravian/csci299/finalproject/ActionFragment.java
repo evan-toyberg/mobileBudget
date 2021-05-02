@@ -12,8 +12,6 @@ import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
 import java.util.Date;
 import java.util.UUID;
 
@@ -34,8 +32,8 @@ public class ActionFragment extends Fragment implements TextWatcher, ActionTypeP
 
     // argument once loaded from database
     private Action action;
-    private TextView dateView, endTimeView, startTimeView, tillView;
-    private EditText description, eventNameView;
+    private TextView dateView;
+    private EditText description, eventNameView, amountView;
 
     private ImageView typeView;
 
@@ -86,12 +84,13 @@ public class ActionFragment extends Fragment implements TextWatcher, ActionTypeP
         typeView = base.findViewById(R.id.actionTypeIcon);
         typeView.setOnClickListener(v -> showActionTypePicker());
 
+        amountView = base.findViewById(R.id.amount);
+        amountView.addTextChangedListener(this);
 
-        endTimeView = base.findViewById(R.id.action_end_time);
-        endTimeView.setOnClickListener(v -> showDatePicker());
 
         dateView = base.findViewById(R.id.dateView);
         dateView.setOnClickListener(v -> showDatePicker());
+
         eventNameView = base.findViewById(R.id.actionTypeName);
         eventNameView.addTextChangedListener(this);
 
@@ -101,6 +100,8 @@ public class ActionFragment extends Fragment implements TextWatcher, ActionTypeP
         // Return the base view
         return base;
     }
+
+
 
 
     /**
@@ -116,17 +117,15 @@ public class ActionFragment extends Fragment implements TextWatcher, ActionTypeP
      * Updates the UI to match the event.
      */
     private void updateUI() {
-        typeView.setImageResource(action.type.iconResourceId);
         eventNameView.setText(action.name);
-        dateView.setText(DateUtils.toFullDateString(action.startTime));
-        startTimeView.setText(DateUtils.toTimeString(action.startTime));
-        endTimeView.setText(DateUtils.toTimeString(action.endTime));
+        dateView.setText(DateUtils.toFullDateString(action.endTime));
+        amountView.setText(String.valueOf(action.amount));
         description.setText(action.description);
 
     }
 
     private void showDatePicker() {
-        DatePickerFragment picker = DatePickerFragment.newInstance(action.startTime);
+        DatePickerFragment picker = DatePickerFragment.newInstance(action.endTime);
         picker.setTargetFragment(this, REQUEST_DATE);
         picker.show(requireFragmentManager(), DIALOG_DATE);
     }
@@ -148,9 +147,13 @@ public class ActionFragment extends Fragment implements TextWatcher, ActionTypeP
     public void afterTextChanged(Editable s) {
         if (s.equals(eventNameView.getText())) {
             action.name = s.toString();
-        } else {
+        } else if (s.equals(amountView.getText())){
+            action.amount = String.valueOf(amountView.getText());
+        } else
             action.description = description.getText().toString();
-        }
+
+
+
     }
 
     /**

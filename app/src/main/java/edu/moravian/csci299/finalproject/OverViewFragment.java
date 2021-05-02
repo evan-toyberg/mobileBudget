@@ -18,7 +18,7 @@ import java.util.List;
 public class OverViewFragment extends Fragment {
     private RecyclerView listView;
     private TextView dateText;
-    private List<Actions> actions = Collections.emptyList();
+    private List<Action> Action = Collections.emptyList();
     private Callbacks callbacks;
 
 
@@ -28,7 +28,7 @@ public class OverViewFragment extends Fragment {
 
     interface Callbacks {
 
-        void onEventSelected(Actions action);
+        void onEventSelected(Action action);
     }
 
     @Override
@@ -52,15 +52,14 @@ public class OverViewFragment extends Fragment {
     }
 
     private class ActionViewHolder extends RecyclerView.ViewHolder {
-        Actions action;
-        TextView name, description, startTime, endTime;
+        Action action;
+        TextView name, description, endTime;
         ImageView typeView;
 
         public ActionViewHolder(@NonNull View eventView) {
             super(eventView);
             name = eventView.findViewById(R.id.action_name);
             description = eventView.findViewById(R.id.action_description);
-            startTime = eventView.findViewById(R.id.action_start_time);
             endTime = eventView.findViewById(R.id.action_end_time);
             typeView = eventView.findViewById(R.id.imageView);
 
@@ -95,15 +94,13 @@ public class OverViewFragment extends Fragment {
         @Override
         public void onBindViewHolder(@NonNull ActionViewHolder holder, int position) {
 
-            Actions action = actions.get(position);
+            Action action = Action.get(position);
             holder.action = action;
             holder.name.setText(action.name);
             holder.description.setText(action.description);
-            holder.startTime.setText(DateUtils.toTimeString(action.startTime));
-//            holder.typeView.setImageResource(action.type.iconResourceId);
-            if (action.endTime != null) {
-                holder.endTime.setText(DateUtils.toTimeString(action.endTime));
-            }
+            holder.typeView.setImageResource(action.type.iconResourceId);
+            holder.endTime.setText(DateUtils.toTimeString(action.endTime));
+
         }
 
         /**
@@ -111,7 +108,7 @@ public class OverViewFragment extends Fragment {
          */
         @Override
         public int getItemCount() {
-            return actions.size();
+            return Action.size();
         }
     }
 

@@ -13,7 +13,7 @@ import android.widget.FrameLayout;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements IncomeFragment.Callbacks, ExpensesFragment.Callbacks {
     FrameLayout simpleFrameLayout;
     TabLayout tabLayout;
     FloatingActionButton addActon;
@@ -73,5 +73,14 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    @Override
+    public void onActionSelected(Action action) {
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.simpleFrameLayout, ActionFragment.newInstance(action))
+                .addToBackStack(null)
+                .commit();
     }
 }

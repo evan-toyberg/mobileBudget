@@ -1,5 +1,6 @@
 package edu.moravian.csci299.MobileBudget;
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,13 +26,6 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
-
-import edu.moravian.csci299.MobileBudget.Action;
-import edu.moravian.csci299.MobileBudget.ActionType;
-import edu.moravian.csci299.MobileBudget.BudgetRepository;
-import edu.moravian.csci299.MobileBudget.DateUtils;
-import edu.moravian.csci299.MobileBudget.IncomeFragment;
-import edu.moravian.csci299.MobileBudget.R;
 
 public class ScheduleFragment extends Fragment {
     private CalendarView calendarView;
@@ -192,3 +186,4 @@ public class ScheduleFragment extends Fragment {
         }
     }
 }
+

@@ -12,7 +12,7 @@ import com.google.android.material.tabs.TabLayout;
 
 /**
  * Authors: Kyle, Evan
- * Mobile Buget App
+ * Mobile Budget App
  */
 public class MainActivity extends AppCompatActivity implements IncomeFragment.Callbacks, ExpensesFragment.Callbacks {
     FrameLayout simpleFrameLayout;

@@ -1,10 +1,9 @@
 <resources>
-    <string name="app_name">Presupuesto móvil</string>
     <string name="title_activity_budget_tab">BudgetTabActivity</string>
     <string name="tab_1">Calendario</string>
     <string name="tab_2">Descripción general</string>
-    <string name="tab_3">Gastos</string>
-    <string name="tab_4">Ingreso</string>
+    <string name="expenses">Gastos</string>
+    <string name="income">Ingreso</string>
     <string name="next">próximo</string>
     <string name="debits_text">Débitos recientes</string>
     <string name="credits_text">Créditos recientes</string>
